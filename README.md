@@ -1,0 +1,2 @@
+# birumudapos
+POS untuk birumuda
