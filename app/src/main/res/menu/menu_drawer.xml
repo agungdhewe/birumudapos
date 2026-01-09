@@ -9,8 +9,20 @@
             android:icon="@drawable/ic_home"/>
         <item
             android:id="@+id/menu_sale"
-            android:title="Sale"/>
-
+            android:title="Sale"
+            android:icon="@drawable/ic_sale"/>
+        <item
+            android:id="@+id/menu_items"
+            android:title="Items"/>
+        <item
+            android:id="@+id/menu_category"
+            android:title="Category"/>
+        <item
+            android:id="@+id/menu_payment"
+            android:title="Payment"/>
+        <item
+            android:id="@+id/menu_user"
+            android:title="User"/>
     </group>
 
     <item
