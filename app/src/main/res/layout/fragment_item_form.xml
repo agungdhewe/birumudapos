@@ -65,6 +65,18 @@
             android:layout_marginTop="4dp" />
 
 
+        <!-- ================= IMAGE ================= -->
+        <ImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_image_placeholder"
+            android:background="@drawable/bg_image_rounded"
+            android:contentDescription="@string/product_image"/>
+
 
         <!-- ================= HARGA & COGS (2 KOLOM) ================= -->
         <LinearLayout

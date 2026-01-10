@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.birumuda.pos.R
 import com.birumuda.pos.data.model.Item
+import java.io.File
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -22,17 +23,13 @@ class ItemAdapter(
 		Locale("in", "ID")
 	).apply {
 		maximumFractionDigits = 0
-
 		val symbols = (this as java.text.DecimalFormat).decimalFormatSymbols
 		symbols.currencySymbol = "Rp "
 		decimalFormatSymbols = symbols
-
 	}
 
 	override fun getCount(): Int = items.size
-
 	override fun getItem(position: Int): Item = items[position]
-
 	override fun getItemId(position: Int): Long = items[position].itemId
 
 	override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -45,19 +42,29 @@ class ItemAdapter(
 
 		val item = items[position]
 
-		// Nama Item
+		// ================= TEXT =================
 		tvName.text = item.nama
-
-		// Harga (Rp 19.800)
 		tvPrice.text = rupiahFormat.format(item.harga)
 
-		// Gambar Produk
-		if (item.picture.isNullOrEmpty()) {
-			imgProduct.setImageResource(R.drawable.ic_image_placeholder)
-		} else {
-			imgProduct.setImageURI(Uri.parse(item.picture))
+		// ================= IMAGE (FIXED) =================
+		imgProduct.setImageResource(R.drawable.ic_image_placeholder) // reset dulu (PENTING)
+
+		item.picture?.let { path ->
+			val file = File(path)
+			if (file.exists()) {
+				imgProduct.setImageURI(Uri.fromFile(file))
+			}
 		}
 
 		return view
+	}
+
+	/**
+	 * Helper untuk refresh data (dipakai oleh Fragment)
+	 */
+	fun updateData(newItems: List<Item>) {
+		items.clear()
+		items.addAll(newItems)
+		notifyDataSetChanged()
 	}
 }

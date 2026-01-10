@@ -8,7 +8,8 @@ import com.birumuda.pos.ui.item.ItemListFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ItemActivity : BaseDrawerActivity(),
-    ItemFormFragment.FormCallback {
+    ItemFormFragment.FormCallback,
+    ItemListFragment.Callback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,33 +17,23 @@ class ItemActivity : BaseDrawerActivity(),
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setupDrawer(toolbar)
-        showItemList()
+
+        // ✅ PENTING: JANGAN replace fragment saat rotate
+        if (savedInstanceState == null) {
+            showItemList()
+        }
 
         findViewById<FloatingActionButton>(R.id.fabAdd).setOnClickListener {
-            showItemForm(null) // ADD MODE
+            showItemForm(null)
         }
     }
 
-
-
-    /**
-     * Tampilkan Grid Item (default)
-     */
     private fun showItemList() {
         supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.fragmentContainer,
-                ItemListFragment { item ->
-                    showItemForm(item) // UPDATE MODE
-                }
-            )
+            .replace(R.id.fragmentContainer, ItemListFragment())
             .commit()
     }
 
-    /**
-     * Tampilkan Form Item
-     * @param item null = ADD, not null = UPDATE
-     */
     private fun showItemForm(item: Item?) {
         supportFragmentManager.beginTransaction()
             .replace(
@@ -53,12 +44,11 @@ class ItemActivity : BaseDrawerActivity(),
             .commit()
     }
 
-    /**
-     * Callback dari ItemFormFragment
-     * Dipanggil setelah data berhasil disimpan
-     */
+    override fun onItemSelected(item: Item) {
+        showItemForm(item)
+    }
+
     override fun onFormSaved() {
         supportFragmentManager.popBackStack()
-        showItemList()
     }
 }
