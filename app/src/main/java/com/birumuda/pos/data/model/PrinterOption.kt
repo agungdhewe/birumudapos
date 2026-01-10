@@ -1,4 +1,4 @@
-package com.birumuda.pos.model
+package com.birumuda.pos.data.model
 
 data class PrinterOption(
     val display: String,

@@ -15,4 +15,8 @@ class MainActivity : BaseDrawerActivity() {
         setupDrawer(toolbar)
 
     }
+
+    override fun drawerIconColor(): Int {
+        return android.R.color.black
+    }
 }

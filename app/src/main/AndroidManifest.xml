@@ -12,26 +12,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BiruMudaPos">
 
+        <activity
+            android:name=".ItemActivity"
+            android:exported="false" />
+
+
         <!-- LOGIN SEBAGAI HALAMAN AWAL -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- HALAMAN UTAMA POS -->
+        </activity> <!-- HALAMAN UTAMA POS -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".SettingActivity"
-            android:exported="false"/>
-
-
+            android:exported="false" />
     </application>
 
 </manifest>

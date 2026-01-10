@@ -9,7 +9,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.birumuda.pos.model.PrinterOption
+import com.birumuda.pos.data.model.PrinterOption
 import com.birumuda.pos.utils.SessionManager
 
 class SettingActivity : AppCompatActivity() {

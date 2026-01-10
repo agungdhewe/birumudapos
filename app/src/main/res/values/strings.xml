@@ -3,4 +3,16 @@
     <string name="username_label">Username</string>
     <string name="password_label">Password</string>
     <string name="login_button_text">LOGIN</string>
+
+    <string name="simpan">Simpan</string>
+    <string name="hapus">Hapus</string>
+    <string name="nama">Nama</string>
+
+    <!-- Item -->
+    <string name="tambah_item">Tambah Item</string>
+    <string name="nama_item">Nama Item</string>
+    <string name="category">Category</string>
+    <string name="harga">Harga</string>
+    <string name="cogs">COGS</string>
+    <string name="product_image">Produk Image</string>
 </resources>

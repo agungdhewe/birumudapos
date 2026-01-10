@@ -1,8 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
-
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
@@ -53,10 +52,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    // ROOM
-    implementation("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
 
-    // Kotlin Extensions (Coroutine support)
-    implementation("androidx.room:room-ktx:2.6.1")
 }

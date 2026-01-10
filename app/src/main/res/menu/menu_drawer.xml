@@ -12,7 +12,7 @@
             android:title="Sale"
             android:icon="@drawable/ic_sale"/>
         <item
-            android:id="@+id/menu_items"
+            android:id="@+id/menu_item"
             android:title="Items"/>
         <item
             android:id="@+id/menu_category"

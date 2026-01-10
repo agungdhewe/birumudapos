@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 
@@ -12,6 +13,10 @@ abstract class BaseDrawerActivity : BaseActivity(),
 
     protected lateinit var drawerLayout: DrawerLayout
     protected lateinit var navigationView: NavigationView
+
+    protected open fun drawerIconColor(): Int {
+        return android.R.color.white   // DEFAULT PUTIH
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +39,8 @@ abstract class BaseDrawerActivity : BaseActivity(),
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+        toggle.drawerArrowDrawable.color = ContextCompat.getColor(this, drawerIconColor())
+
         setupHeader()
         navigationView.setNavigationItemSelectedListener(this)
     }
@@ -47,6 +54,7 @@ abstract class BaseDrawerActivity : BaseActivity(),
     override fun onNavigationItemSelected(item: android.view.MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_home -> navigate(MainActivity::class.java)
+            R.id.menu_item -> navigate(ItemActivity::class.java)
 //			R.id.menu_opname -> navigate(OpnameActivity::class.java)
 //			R.id.menu_receiving -> navigate(ReceivingActivity::class.java)
 //            R.id.menu_print_label -> navigate(PrintlabelActivity::class.java)
