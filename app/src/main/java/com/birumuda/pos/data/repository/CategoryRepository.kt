@@ -8,6 +8,9 @@ import com.birumuda.pos.data.model.Category
 
 class CategoryRepository(private val dbHelper: AppDatabaseHelper) {
 
+    /**
+     * Digunakan oleh ItemActivity (JANGAN DIUBAH)
+     */
     fun insertIfNotExists(nama: String): Long {
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
@@ -21,6 +24,9 @@ class CategoryRepository(private val dbHelper: AppDatabaseHelper) {
         )
     }
 
+    /**
+     * Digunakan oleh ItemActivity (JANGAN DIUBAH)
+     */
     fun getCategoryIdByName(nama: String): Long {
         val db = dbHelper.readableDatabase
         val cursor = db.query(
@@ -41,19 +47,63 @@ class CategoryRepository(private val dbHelper: AppDatabaseHelper) {
         val db = dbHelper.readableDatabase
         val cursor = db.query(
             DbContract.CategoryTable.TABLE_NAME,
-            null, null, null, null, null,
+            null,
+            null,
+            null,
+            null,
+            null,
             DbContract.CategoryTable.COLUMN_NAME
         )
 
         while (cursor.moveToNext()) {
             list.add(
                 Category(
-                    categoryId = cursor.getLong(0),
-                    nama = cursor.getString(1)
+                    categoryId = cursor.getLong(
+                        cursor.getColumnIndexOrThrow(DbContract.CategoryTable.COLUMN_ID)
+                    ),
+                    nama = cursor.getString(
+                        cursor.getColumnIndexOrThrow(DbContract.CategoryTable.COLUMN_NAME)
+                    ),
+                    deskripsi = cursor.getString(
+                        cursor.getColumnIndexOrThrow(DbContract.CategoryTable.COLUMN_DESC)
+                    )
                 )
             )
         }
         cursor.close()
         return list
+    }
+
+    fun insert(category: Category): Long {
+        val db = dbHelper.writableDatabase
+        val values = ContentValues().apply {
+            put(DbContract.CategoryTable.COLUMN_NAME, category.nama)
+            put(DbContract.CategoryTable.COLUMN_DESC, category.deskripsi)
+        }
+        return db.insert(DbContract.CategoryTable.TABLE_NAME, null, values)
+    }
+
+    // ================== FIX UTAMA ADA DI SINI ==================
+    fun update(category: Category): Int {
+        val db = dbHelper.writableDatabase
+        val values = ContentValues().apply {
+            put(DbContract.CategoryTable.COLUMN_NAME, category.nama)
+            put(DbContract.CategoryTable.COLUMN_DESC, category.deskripsi)
+        }
+        return db.update(
+            DbContract.CategoryTable.TABLE_NAME,
+            values,
+            "${DbContract.CategoryTable.COLUMN_ID}=?",
+            arrayOf(category.categoryId.toString())
+        )
+    }
+
+    fun delete(categoryId: Long): Int {
+        val db = dbHelper.writableDatabase
+        return db.delete(
+            DbContract.CategoryTable.TABLE_NAME,
+            "${DbContract.CategoryTable.COLUMN_ID}=?",
+            arrayOf(categoryId.toString())
+        )
     }
 }

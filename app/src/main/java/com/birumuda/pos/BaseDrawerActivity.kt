@@ -2,10 +2,17 @@ package com.birumuda.pos
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.birumuda.pos.ui.category.CategoryActivity
+import com.birumuda.pos.ui.item.ItemActivity
+import com.birumuda.pos.ui.main.MainActivity
+import com.birumuda.pos.ui.payment.PaymentActivity
+import com.birumuda.pos.ui.setting.SettingActivity
 import com.google.android.material.navigation.NavigationView
 
 abstract class BaseDrawerActivity : BaseActivity(),
@@ -21,6 +28,26 @@ abstract class BaseDrawerActivity : BaseActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // child activity WAJIB memanggil setContentView lebih dulu
+
+        // =========================
+        // BACK HANDLER UNTUK DRAWER
+        // =========================
+        onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (::drawerLayout.isInitialized &&
+                        drawerLayout.isDrawerOpen(GravityCompat.START)
+                    ) {
+                        drawerLayout.closeDrawer(GravityCompat.START)
+                    } else {
+                        // Lepas callback → biarkan Activity anak yang handle
+                        isEnabled = false
+                        onBackPressedDispatcher.onBackPressed()
+                    }
+                }
+            }
+        )
     }
 
     protected fun setupDrawer(toolbar: androidx.appcompat.widget.Toolbar) {
@@ -39,7 +66,8 @@ abstract class BaseDrawerActivity : BaseActivity(),
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        toggle.drawerArrowDrawable.color = ContextCompat.getColor(this, drawerIconColor())
+        toggle.drawerArrowDrawable.color =
+            ContextCompat.getColor(this, drawerIconColor())
 
         setupHeader()
         navigationView.setNavigationItemSelectedListener(this)
@@ -47,7 +75,8 @@ abstract class BaseDrawerActivity : BaseActivity(),
 
     private fun setupHeader() {
         val headerView = navigationView.getHeaderView(0)
-        val tvUsername = headerView.findViewById<android.widget.TextView>(R.id.tvUsername)
+        val tvUsername =
+            headerView.findViewById<android.widget.TextView>(R.id.tvUsername)
         tvUsername.text = sessionManager.username ?: "Unknown User"
     }
 
@@ -55,9 +84,8 @@ abstract class BaseDrawerActivity : BaseActivity(),
         when (item.itemId) {
             R.id.menu_home -> navigate(MainActivity::class.java)
             R.id.menu_item -> navigate(ItemActivity::class.java)
-//			R.id.menu_opname -> navigate(OpnameActivity::class.java)
-//			R.id.menu_receiving -> navigate(ReceivingActivity::class.java)
-//            R.id.menu_print_label -> navigate(PrintlabelActivity::class.java)
+            R.id.menu_category -> navigate(CategoryActivity::class.java)
+            R.id.menu_payment -> navigate(PaymentActivity::class.java)
             R.id.menu_setting -> navigate(SettingActivity::class.java)
             R.id.menu_logout -> showLogoutDialog()
         }
@@ -72,9 +100,19 @@ abstract class BaseDrawerActivity : BaseActivity(),
 
     protected fun navigate(target: Class<*>) {
         if (this::class.java != target) {
-            startActivity(Intent(this, target))
+            val intent = Intent(this, target)
+
+            // Jika target MainActivity → reset ke root
+            if (target == MainActivity::class.java) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            }
+
+            startActivity(intent)
+            finish()
         }
     }
+
+
 
     private fun showLogoutDialog() {
         AlertDialog.Builder(this)

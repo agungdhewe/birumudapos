@@ -13,26 +13,31 @@
         android:theme="@style/Theme.BiruMudaPos">
 
         <activity
-            android:name=".ItemActivity"
-            android:exported="false" />
-
-
-        <!-- LOGIN SEBAGAI HALAMAN AWAL -->
-        <activity
-            android:name=".LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- HALAMAN UTAMA POS -->
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
+            android:exported="false"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".ui.setting.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingActivity"
+            android:name=".ui.category.CategoryActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.item.ItemActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.payment.PaymentActivity"
+            android:exported="false" />
+
+
     </application>
 
 </manifest>

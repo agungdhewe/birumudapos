@@ -1,4 +1,4 @@
-package com.birumuda.pos.adapter
+package com.birumuda.pos.ui.item
 
 import android.content.Context
 import android.net.Uri
@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.birumuda.pos.R
 import com.birumuda.pos.data.model.Item
 import java.io.File
+import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -23,7 +24,7 @@ class ItemAdapter(
 		Locale("in", "ID")
 	).apply {
 		maximumFractionDigits = 0
-		val symbols = (this as java.text.DecimalFormat).decimalFormatSymbols
+		val symbols = (this as DecimalFormat).decimalFormatSymbols
 		symbols.currencySymbol = "Rp "
 		decimalFormatSymbols = symbols
 	}
@@ -34,7 +35,7 @@ class ItemAdapter(
 
 	override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 		val view = convertView ?: LayoutInflater.from(context)
-			.inflate(R.layout.item_grid, parent, false)
+			.inflate(R.layout.row_item, parent, false)
 
 		val imgProduct = view.findViewById<ImageView>(R.id.imgProduct)
 		val tvName = view.findViewById<TextView>(R.id.txtName)
@@ -57,14 +58,5 @@ class ItemAdapter(
 		}
 
 		return view
-	}
-
-	/**
-	 * Helper untuk refresh data (dipakai oleh Fragment)
-	 */
-	fun updateData(newItems: List<Item>) {
-		items.clear()
-		items.addAll(newItems)
-		notifyDataSetChanged()
 	}
 }

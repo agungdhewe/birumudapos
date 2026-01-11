@@ -1,6 +1,5 @@
-package com.birumuda.pos
+package com.birumuda.pos.ui.setting
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
@@ -9,6 +8,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.birumuda.pos.R
 import com.birumuda.pos.data.model.PrinterOption
 import com.birumuda.pos.utils.SessionManager
 
@@ -22,13 +22,13 @@ class SettingActivity : AppCompatActivity() {
     private lateinit var spPrinter: Spinner
 
     private val prefs by lazy {
-        getSharedPreferences("app_setting", Context.MODE_PRIVATE)
+        getSharedPreferences("app_setting", MODE_PRIVATE)
     }
 
     private val printerOptions = listOf(
-        PrinterOption("Pilih Printer", ""),
-        PrinterOption("Epson TM180", "TM180"),
-        PrinterOption("Kassen RPP02N", "RPP02N")
+		PrinterOption("Pilih Printer", ""),
+		PrinterOption("Epson TM180", "TM180"),
+		PrinterOption("Kassen RPP02N", "RPP02N")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,10 +75,10 @@ class SettingActivity : AppCompatActivity() {
         val options = listOf("Scanner", "Camera")
 
         val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            options
-        )
+			this,
+			android.R.layout.simple_spinner_item,
+			options
+		)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         spBarcodeReader.adapter = adapter
@@ -88,10 +88,10 @@ class SettingActivity : AppCompatActivity() {
         val displayList = printerOptions.map { it.display }
 
         val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            displayList
-        )
+			this,
+			android.R.layout.simple_spinner_item,
+			displayList
+		)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         spPrinter.adapter = adapter

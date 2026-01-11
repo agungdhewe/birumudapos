@@ -1,14 +1,16 @@
-package com.birumuda.pos
+package com.birumuda.pos.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.birumuda.pos.ui.main.MainActivity
+import com.birumuda.pos.R
+import com.birumuda.pos.ui.setting.SettingActivity
 import com.birumuda.pos.utils.SessionManager
 
 class LoginActivity : AppCompatActivity() {

@@ -115,4 +115,19 @@ class ItemRepository(private val dbHelper: AppDatabaseHelper) {
         cursor.close()
         return list
     }
+
+    // ================== TAMBAHAN (INI KUNCI) ==================
+    fun isCategoryUsed(categoryId: Long): Boolean {
+        val db = dbHelper.readableDatabase
+        val cursor = db.rawQuery(
+            "SELECT 1 FROM ${DbContract.ItemTable.TABLE_NAME} " +
+                    "WHERE ${DbContract.ItemTable.COLUMN_CATEGORY_ID}=? LIMIT 1",
+            arrayOf(categoryId.toString())
+        )
+
+        val used = cursor.moveToFirst()
+        cursor.close()
+        return used
+    }
+
 }

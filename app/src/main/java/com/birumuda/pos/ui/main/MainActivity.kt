@@ -1,7 +1,9 @@
-package com.birumuda.pos
+package com.birumuda.pos.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
+import com.birumuda.pos.BaseDrawerActivity
+import com.birumuda.pos.R
 import com.google.android.material.appbar.MaterialToolbar
 
 class MainActivity : BaseDrawerActivity() {

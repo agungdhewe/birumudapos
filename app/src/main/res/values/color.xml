@@ -10,5 +10,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#000000</color>
     <color name="error">#B3261E</color>
+    <color name="redbutton">#B3261E</color>
 
 </resources>

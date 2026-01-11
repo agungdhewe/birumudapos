@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- ================= TITLE ================= -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_add_payment"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- ================= NAMA ================= -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Payment"
+            android:labelFor="@id/etPaymentName"/>
+
+        <EditText
+            android:id="@+id/etPaymentName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input_underline"
+            android:inputType="textCapWords"
+            android:importantForAutofill="no" />
+
+        <!-- ================= DESKRIPSI ================= -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deskripsi"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etPaymentDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_input_underline"
+            android:inputType="textMultiLine"
+            android:gravity="start|top"
+            android:minLines="3"
+            android:importantForAutofill="no" />
+
+        <!-- ================= TIPE PAYMENT ================= -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipe Payment"
+            android:layout_marginTop="16dp" />
+
+
+        <!-- PAYMENT TYPE -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_spinner_rounded">
+
+            <!-- "@android:color/transparent" -->
+            <Spinner
+                android:id="@+id/spPaymentType"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@android:color/transparent"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="6dp"
+                android:src="@drawable/ic_arrow_drop_down"
+                android:importantForAccessibility="no"/>
+        </FrameLayout>
+
+
+
+
+        <!-- ================= NONAKTIF ================= -->
+        <CheckBox
+            android:id="@+id/cbNonActive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nonaktif"
+            android:layout_marginTop="16dp" />
+
+        <!-- ================= SIMPAN ================= -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Simpan"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textColor="@android:color/white" />
+
+        <!-- ================= HAPUS ================= -->
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Hapus"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/redbutton"
+            android:textColor="@android:color/white"
+            />
+
+    </LinearLayout>
+</ScrollView>

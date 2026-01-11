@@ -14,7 +14,7 @@ import android.widget.Spinner
 
 import androidx.fragment.app.Fragment
 import com.birumuda.pos.R
-import com.birumuda.pos.adapter.ItemAdapter
+import com.birumuda.pos.ui.item.ItemAdapter
 import com.birumuda.pos.data.db.AppDatabaseHelper
 import com.birumuda.pos.data.model.Category
 import com.birumuda.pos.data.model.Item

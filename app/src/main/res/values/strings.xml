@@ -9,11 +9,26 @@
     <string name="nama">Nama</string>
 
     <!-- Item -->
-    <string name="tambah_item">Tambah Item</string>
+    <string name="title_add_item">Tambah Item</string>
+    <string name="title_edit_item">Edit Item</string>
     <string name="nama_item">Nama Item</string>
     <string name="category">Category</string>
     <string name="harga">Harga</string>
     <string name="cogs">COGS</string>
     <string name="product_image">Produk Image</string>
     <string name="cari_item">Cari Item</string>
+
+    <!-- Category -->
+    <string name="title_add_category">Tambah Category</string>
+    <string name="title_edit_category">Edit Category</string>
+    <string name="msg_category_used">Category ini sudah digunakan oleh Item.</string>
+    <string name="title_delete_category">Hapus Category</string>
+    <string name="msg_delete_category_confirm">Yakin ingin menghapus category ini?</string>
+    <string name="msg_cannot_delete">Tidak Bisa Dihapus</string>
+
+    <!-- Payment -->
+    <string name="title_add_payment">Tambah Payment</string>
+    <string name="title_edit_payment">Edit Payment</string>
+
+
 </resources>

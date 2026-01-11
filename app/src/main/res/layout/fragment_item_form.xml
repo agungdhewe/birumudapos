@@ -15,7 +15,7 @@
         <!-- ================= TITLE ================= -->
         <TextView
             android:id="@+id/tvTitle"
-            android:text="@string/tambah_item"
+            android:text="@string/title_add_item"
             android:textStyle="bold"
             android:textSize="18sp"
             android:layout_marginBottom="16dp"
@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:text="@string/hapus"
             android:layout_marginTop="8dp"
-            android:backgroundTint="@color/error"
+            android:backgroundTint="@color/redbutton"
             android:textColor="@android:color/white"
             android:visibility="gone"/>
 

@@ -86,7 +86,7 @@ class ItemFormFragment : Fragment(R.layout.fragment_item_form) {
 		/* ================= MODE EDIT / ADD ================= */
 
 		selectedItem?.let { item ->
-			tvTitle.text = "Edit Item"
+			tvTitle.text = getString(R.string.title_edit_item)
 			btnDelete.visibility = View.VISIBLE
 
 			etName.setText(item.nama)
